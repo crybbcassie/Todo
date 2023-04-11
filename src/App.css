@@ -24,9 +24,14 @@ h1 {
   font-size: 1.75rem;
 }
 
+h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
 .TodoWrapper {
   background: #1A1A40;
-  margin-top: 5rem;
+  margin: 5rem auto;
   padding: 2rem;
   border-radius: 5px;
 }
@@ -56,7 +61,17 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
-  
+}
+
+.form-btn {
+  background: #8758ff;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .Todo {
@@ -78,4 +93,70 @@ h1 {
 .completed {
   color: #c5aeff;
   text-decoration: line-through;
+}
+
+.link{
+  margin-top: -4rem;
+  margin-bottom: 2rem;
+}
+
+.nav-btn{
+  min-width: 110px;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.radio {
+	display: inline-block;
+	overflow: hidden;
+  color: #fff;
+}
+
+.radio-item {
+	display: inline-block;
+}
+
+.radio-item input[type=radio] {
+	display: none;
+}
+
+.radio-item label {
+	display: inline-block;
+	padding: 0px 15px;   
+	line-height: 34px; 
+	cursor: pointer;
+	user-select: none;   
+}
+ 
+.radio .item-1 label {
+	border: 1px solid #8758ff;
+}
+.radio .item-2 label {
+	border: 1px solid #8758ff;
+}
+ 
+.radio input[type=radio]:checked + label {
+	background: #8758ff;
+}
+
+/* .SignUp{
+  min-width: 500px;
+} */
+
+.item{
+  display: flex;
+  justify-content: space-between;
+}
+
+.lab{
+  margin-top: 20px;
+  margin-right: 30px;
+}
+
+.lab-gen{
+  margin-top: 5px;
+}
+
+.con-gen{
+  margin-bottom: 8px;
 }

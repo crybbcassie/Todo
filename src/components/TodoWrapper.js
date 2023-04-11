@@ -9,7 +9,6 @@ export default function TodoWrapper(){
     const [todos, setTodos] = useState([])
     function addTodo(todo){
         setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
-        console.log(todos)
     }
 
     function toggleComplete(id){
@@ -32,16 +31,19 @@ export default function TodoWrapper(){
       <div className="TodoWrapper">
         <h1>Get things done!</h1>
         <TodoForm addTodo={addTodo} />
-        {todos.map((todo, index) => (
+        {todos.map((todo, index) =>
           todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo}/>
-          ): (
-          <Todo task={todo} key={index}
-          toggleComplete={toggleComplete}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}/>
+            <EditTodoForm editTodo={editTask} task={todo} key={index} />
+          ) : (
+            <Todo
+              task={todo}
+              key={index}
+              toggleComplete={toggleComplete}
+              deleteTodo={deleteTodo}
+              editTodo={editTodo}
+            />
           )
-        ))}
+        )}
       </div>
     );
 }
