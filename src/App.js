@@ -5,14 +5,17 @@ import TodoWrapper from "./components/TodoWrapper";
 import { useState } from 'react';
 
 function App() {
-  const [value, setValue] = useState('login')
+  const [currName, setCurrName] = useState('login')
+
+  function toggleForm(formName){
+    setCurrName(formName)
+  }
+
   return (
     <div className="App">
-      {/* {value !== 'login' ? 
-      <LogIn/> : <SignUp/>}       */}
-      <LogIn />  
-      <SignUp />
-      <TodoWrapper/>
+      {currName === 'login' ? 
+      <LogIn onFormSwitch={toggleForm}/> : <SignUp onFormSwitch={toggleForm}/>}      
+
     </div>
   );
 }

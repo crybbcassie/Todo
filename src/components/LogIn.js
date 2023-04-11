@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SignUp from "./SignUp";
 
-export default function LogIn(){
+export default function LogIn({onFormSwitch}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
 
@@ -12,9 +12,9 @@ export default function LogIn(){
     return (
       <>
         <form className="TodoForm TodoWrapper" onSubmit={handleSubmit}>
-          <lable type="email">
+          <label type="email">
             <h3>email</h3>
-          </lable>
+          </label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -25,9 +25,9 @@ export default function LogIn(){
             name="email"
           ></input>
 
-          <lable type="password">
+          <label type="password">
             <h3>password</h3>
-          </lable>
+          </label>
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -42,7 +42,7 @@ export default function LogIn(){
             Log In
           </button>
         </form>
-        <button className="form-btn link">
+        <button className="form-btn link" onClick={() => onFormSwitch('register')}>
           <h3>Don't have an account? Sign Up!</h3>
         </button>
       </>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LogIn from "./LogIn";
 
-export default function SignUp(){
+export default function SignUp({onFormSwitch}){
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -13,14 +13,18 @@ export default function SignUp(){
       e.preventDefault();
     }
 
+    function validAge(e){
+      typeof(e) !== 'number' && e < 0 ? setAge('invalid age') : setAge(e)
+    }
+
     return (
       <>
         <form className="TodoForm TodoWrapper" onSubmit={handleSubmit}>
           <div className="item">
             <div className="lab">
-              <lable type="text">
+              <label type="text">
                 <h3>name</h3>
-              </lable>
+              </label>
             </div>
             <input
               value={name}
@@ -28,16 +32,15 @@ export default function SignUp(){
               type="text"
               placeholder="Dinosaur"
               className="todo-input"
-              id="text"
               name="text"
             ></input>
           </div>
 
           <div className="item">
             <div className="lab">
-              <lable type="text">
+              <label type="text">
                 <h3>username</h3>
-              </lable>
+              </label>
             </div>
             <input
               value={username}
@@ -45,16 +48,15 @@ export default function SignUp(){
               type="text"
               placeholder="Dino_saur_cream"
               className="todo-input"
-              id="text"
               name="text"
             ></input>
           </div>
 
           <div className="item">
             <div className="lab">
-              <lable type="email">
+              <label type="email">
                 <h3>email</h3>
-              </lable>
+              </label>
             </div>
             <input
               value={email}
@@ -62,16 +64,15 @@ export default function SignUp(){
               type="email"
               placeholder="dino_saur_cream@gmail.com"
               className="todo-input"
-              id="email"
               name="email"
             ></input>
           </div>
 
           <div className="item">
             <div className="lab">
-              <lable type="password">
+              <label type="password">
                 <h3>password</h3>
-              </lable>
+              </label>
             </div>
             <input
               value={password}
@@ -79,20 +80,19 @@ export default function SignUp(){
               type="password"
               placeholder="secret_info123"
               className="todo-input"
-              id="password"
               name="password"
             ></input>
           </div>
 
           <div className="item">
             <div className="lab lab-gen">
-              <lable type="text">
+              <label type="text">
                 <h3>gender</h3>
-              </lable>
+              </label>
             </div>
             <div className="con-gen">
-              <div class="radio">
-                <div class="radio-item item-1">
+              <div className="radio">
+                <div className="radio-item item-1">
                   <input
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
@@ -101,9 +101,9 @@ export default function SignUp(){
                     name="radio"
                     checked
                   ></input>
-                  <label for="fid-1">Male</label>
+                  <label htmlFor="fid-1">Male</label>
                 </div>
-                <div class="radio-item item-2">
+                <div className="radio-item item-2">
                   <input
                     id="fid-2"
                     type="radio"
@@ -111,7 +111,7 @@ export default function SignUp(){
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                   ></input>
-                  <label for="fid-2">Female</label>
+                  <label htmlFor="fid-2">Female</label>
                 </div>
               </div>
             </div>
@@ -119,18 +119,16 @@ export default function SignUp(){
 
           <div className="item">
             <div className="lab">
-              <lable type="text">
+              <label type="text">
                 <h3>age</h3>
-              </lable>
+              </label>
             </div>
             <input
+              onChange={(e) => validAge(e.target.value)}
               value={age}
-              onChange={(e) => setAge(e.target.value)}
               type="text"
               placeholder="48"
               className="todo-input"
-              id="text"
-              name="text"
             ></input>
           </div>
 
@@ -138,7 +136,7 @@ export default function SignUp(){
             Sign Up
           </button>
         </form>
-        <button className="form-btn link">
+        <button className="form-btn link" onClick={() => onFormSwitch('login')}>
           <h3>Already have an account? Log In!</h3>
         </button>
       </>
