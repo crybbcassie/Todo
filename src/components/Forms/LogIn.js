@@ -1,5 +1,4 @@
 import { useState } from "react";
-import SignUp from "./SignUp";
 
 export default function LogIn({onFormSwitch}){
     const [email, setEmail] = useState('');

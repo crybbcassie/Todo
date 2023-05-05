@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LogIn from "./LogIn";
+import axios from "axios";
 
 export default function SignUp({onFormSwitch}){
     const [name, setName] = useState("");
@@ -11,10 +11,12 @@ export default function SignUp({onFormSwitch}){
 
     function handleSubmit(e) {
       e.preventDefault();
+      console.log(name)
+      // setData(data)
     }
 
-    function validAge(e){
-      typeof(e) !== 'number' && e < 0 ? setAge('invalid age') : setAge(e)
+    function validAge(age){
+      typeof(age) !== 'number' && age < 0 ? alert('invalid age') : setAge(age)
     }
 
     return (

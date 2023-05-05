@@ -1,7 +1,7 @@
 import './App.css';
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
-import TodoWrapper from "./components/TodoWrapper";
+import LogIn from './components/Forms/LogIn';
+import SignUp from './components/Forms/SignUp';
+import TodoWrapper from "./components/Todo/TodoWrapper";
 import { useState } from 'react';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       {currName === 'login' ? 
       <LogIn onFormSwitch={toggleForm}/> : <SignUp onFormSwitch={toggleForm}/>}      
-
+      <TodoWrapper/>
     </div>
   );
 }
