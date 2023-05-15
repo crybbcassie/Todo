@@ -40,40 +40,6 @@ h3 {
   width: 100%;
 }
 
-.todo-input {
-  outline: none;
-  background: none;
-  border: 1px solid #8758ff;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  width: 300px;
-  color: #fff;
-}
-
-.todo-input::placeholder {
-  color: #ffffff4d;
-}
-
-.todo-btn {
-  background: #8758ff;
-  color: #fff;
-  border: none;
-  padding: 0.55rem;
-  cursor: pointer;
-}
-
-.form-btn {
-  background: #8758ff;
-  color: #fff;
-  border: none;
-  padding: 0.55rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-}
-
 .Todo {
   display: flex;
   justify-content: space-between;
@@ -98,12 +64,6 @@ h3 {
 .link{
   margin-top: -4rem;
   margin-bottom: 2rem;
-}
-
-.nav-btn{
-  min-width: 110px;
-  font-size: 1rem;
-  align-items: center;
 }
 
 .radio {

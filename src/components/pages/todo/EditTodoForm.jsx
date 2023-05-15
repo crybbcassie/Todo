@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ClassicInput from "../../UI/inputs/ClassicInput";
+import TodoBtn from "../../UI/buttons/TodoBtn";
 
 export default function EditTodoForm({ editTodo, task }) {
   const [value, setValue] = useState(task.task);
@@ -11,17 +13,16 @@ export default function EditTodoForm({ editTodo, task }) {
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
-      <input
+      <ClassicInput
         type="text"
-        className="todo-input"
         value={value}
         placeholder="Update task"
         onChange={(event) => setValue(event.target.value)}
-      ></input>
+      ></ClassicInput>
 
-      <button type="submit" className="todo-btn">
+      <TodoBtn type="submit">
         Update
-      </button>
+      </TodoBtn>
     </form>
   );
 }

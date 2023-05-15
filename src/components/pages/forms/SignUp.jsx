@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import ClassicInput from "../../UI/inputs/ClassicInput";
+import FormBtn from "../../UI/buttons/FormBtn";
 
 export default function SignUp({onFormSwitch}){
     const [name, setName] = useState("");
@@ -28,14 +30,13 @@ export default function SignUp({onFormSwitch}){
                 <h3>name</h3>
               </label>
             </div>
-            <input
+            <ClassicInput
               value={name}
               onChange={(e) => setName(e.target.value)}
               type="text"
               placeholder="Dinosaur"
-              className="todo-input"
               name="text"
-            ></input>
+            ></ClassicInput>
           </div>
 
           <div className="item">
@@ -44,14 +45,13 @@ export default function SignUp({onFormSwitch}){
                 <h3>username</h3>
               </label>
             </div>
-            <input
+            <ClassicInput
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               placeholder="Dino_saur_cream"
-              className="todo-input"
               name="text"
-            ></input>
+            ></ClassicInput>
           </div>
 
           <div className="item">
@@ -60,14 +60,13 @@ export default function SignUp({onFormSwitch}){
                 <h3>email</h3>
               </label>
             </div>
-            <input
+            <ClassicInput
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="dino_saur_cream@gmail.com"
-              className="todo-input"
               name="email"
-            ></input>
+            ></ClassicInput>
           </div>
 
           <div className="item">
@@ -76,14 +75,13 @@ export default function SignUp({onFormSwitch}){
                 <h3>password</h3>
               </label>
             </div>
-            <input
+            <ClassicInput
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="secret_info123"
-              className="todo-input"
               name="password"
-            ></input>
+            ></ClassicInput>
           </div>
 
           <div className="item">
@@ -125,22 +123,19 @@ export default function SignUp({onFormSwitch}){
                 <h3>age</h3>
               </label>
             </div>
-            <input
+            <ClassicInput
               onChange={(e) => validAge(e.target.value)}
               value={age}
               type="text"
               placeholder="48"
-              className="todo-input"
-            ></input>
+            ></ClassicInput>
           </div>
 
-          <button type="submit" className="form-btn nav-btn">
-            Sign Up
-          </button>
+          <FormBtn type="submit">Sign Up</FormBtn>
         </form>
-        <button className="form-btn link" onClick={() => onFormSwitch('login')}>
+        <FormBtn onClick={() => onFormSwitch("login")}>
           <h3>Already have an account? Log In!</h3>
-        </button>
+        </FormBtn>
       </>
     );
 }

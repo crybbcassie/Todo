@@ -1,0 +1,21 @@
+.todo_btn {
+  background: #8758ff;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.form_btn {
+  background: #8758ff;
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-size: 1rem;
+  align-items: center;
+  min-width: 100px;
+}

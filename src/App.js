@@ -1,7 +1,7 @@
 import './App.css';
-import LogIn from './components/forms/LogIn';
-import SignUp from './components/forms/SignUp';
-import TodoWrapper from "./components/todo/TodoWrapper";
+import LogIn from './components/pages/forms/LogIn';
+import SignUp from "./components/pages/forms/SignUp";
+import TodoWrapper from "./components/pages/todo/TodoWrapper";
 import { useState } from 'react';
 
 function App() {
