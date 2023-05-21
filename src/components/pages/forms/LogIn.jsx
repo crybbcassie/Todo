@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import FormBtn from "../../UI/buttons/FormBtn";
+import { login } from "../../API/Service";
 
 export default function LogIn({onFormSwitch}){
     const [email, setEmail] = useState('');
@@ -37,7 +38,7 @@ export default function LogIn({onFormSwitch}){
             name="password"
           ></ClassicInput>
 
-          <FormBtn type="submit">
+          <FormBtn onClick={()=> login()} type="submit">
             Log In
           </FormBtn>
         </form>

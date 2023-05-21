@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import FormBtn from "../../UI/buttons/FormBtn";
+import {register} from '../../API/Service'
 
 export default function SignUp({onFormSwitch}){
     const [name, setName] = useState("");
@@ -131,7 +132,9 @@ export default function SignUp({onFormSwitch}){
             ></ClassicInput>
           </div>
 
-          <FormBtn type="submit">Sign Up</FormBtn>
+          <FormBtn onClick={() => register()} type="submit">
+            Sign Up
+          </FormBtn>
         </form>
         <FormBtn onClick={() => onFormSwitch("login")}>
           <h3>Already have an account? Log In!</h3>
