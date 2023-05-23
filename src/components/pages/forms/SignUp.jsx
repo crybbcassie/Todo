@@ -9,19 +9,26 @@ export default function SignUp({onFormSwitch}){
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState(true);
     const [age, setAge] = useState("");
 
     function handleSubmit(e) {
       e.preventDefault();
-      console.log(name)
-      // setData(data)
     }
 
-    function validAge(age){
-      typeof(age) !== 'number' && age < 0 ? alert('invalid age') : setAge(age)
+    const validAge = (num) => {
+      return (typeof num !== 'number' && age < 0)? '' : num
     }
-
+    
+    const userRegisterData = {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+      isMan: gender,
+      age: age,
+    };
+    
     return (
       <>
         <form className="TodoForm TodoWrapper" onSubmit={handleSubmit}>
@@ -96,23 +103,22 @@ export default function SignUp({onFormSwitch}){
                 <div className="radio-item item-1">
                   <input
                     value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                    id="fid-1"
+                    onChange={() => setGender(gender)}
+                    id="male"
                     type="radio"
                     name="radio"
                     checked
                   ></input>
-                  <label htmlFor="fid-1">Male</label>
+                  <label htmlFor="male">Male</label>
                 </div>
                 <div className="radio-item item-2">
                   <input
-                    id="fid-2"
+                    id="female"
                     type="radio"
                     name="radio"
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
+                    onChange={() => setGender(!gender)}
                   ></input>
-                  <label htmlFor="fid-2">Female</label>
+                  <label htmlFor="female">Female</label>
                 </div>
               </div>
             </div>
@@ -125,14 +131,13 @@ export default function SignUp({onFormSwitch}){
               </label>
             </div>
             <ClassicInput
-              onChange={(e) => validAge(e.target.value)}
+              onChange={(e) => validAge(setAge(e.target.value))}
               value={age}
-              type="text"
               placeholder="48"
             ></ClassicInput>
           </div>
 
-          <FormBtn onClick={() => register()} type="submit">
+          <FormBtn onClick={() => register(userRegisterData)} type="submit">
             Sign Up
           </FormBtn>
         </form>

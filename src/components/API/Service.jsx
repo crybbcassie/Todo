@@ -1,17 +1,10 @@
 import axios from 'axios'
 
-export async function register(){
+export async function register(userRegisterData){
     await axios
       .post(
         `https://first-node-js-app-r.herokuapp.com/api/users/register`,
-        {
-          name: "Mafeegsfwfwsha",
-          username: "magegrrfefwy22",
-          email: "examfgseefefeple@example.com",
-          password: "1Sq_22qw",
-          isMan: true,
-          age: 25,
-        },
+        userRegisterData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -26,24 +19,21 @@ export async function register(){
       });
 }
 
-export async function login(){
-    await axios
-      .post(
-        `https://first-node-js-app-r.herokuapp.com/api/auth/login`,
-        {
-          email: "vlad8@mail.ru",
-          password: "Hello_34",
+export async function login(userLoginData) {
+  await axios
+    .post(
+      `https://first-node-js-app-r.herokuapp.com/api/auth/login`,
+      userLoginData,
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((token) => {
-        console.log(token);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+      }
+    )
+    .then((token) => {
+      console.log(token);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }

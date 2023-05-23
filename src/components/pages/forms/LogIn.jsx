@@ -7,6 +7,13 @@ export default function LogIn({onFormSwitch}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
 
+    const userLoginData ={
+      email: email,
+      password: password
+    }
+
+    console.log(userLoginData);
+
     function handleSubmit(e){
         e.preventDefault()
     }
@@ -38,7 +45,7 @@ export default function LogIn({onFormSwitch}){
             name="password"
           ></ClassicInput>
 
-          <FormBtn onClick={()=> login()} type="submit">
+          <FormBtn onClick={() => login(userLoginData)} type="submit">
             Log In
           </FormBtn>
         </form>
