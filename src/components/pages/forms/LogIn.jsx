@@ -2,6 +2,7 @@ import { useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import FormBtn from "../../UI/buttons/FormBtn";
 import { login } from "../../API/Service";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn({onFormSwitch}){
     const [email, setEmail] = useState('');
@@ -12,10 +13,17 @@ export default function LogIn({onFormSwitch}){
       password: password
     }
 
-    console.log(userLoginData);
+    console.log(userLoginData)
 
     function handleSubmit(e){
         e.preventDefault()
+    }
+
+    const navigate = useNavigate()
+
+    function changePage(){
+      onFormSwitch('register')
+      navigate('/SignUp')
     }
 
     return (
@@ -40,7 +48,7 @@ export default function LogIn({onFormSwitch}){
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            placeholder="secret_info123"
+            placeholder="secret_Info123"
             id="password"
             name="password"
           ></ClassicInput>
@@ -49,7 +57,7 @@ export default function LogIn({onFormSwitch}){
             Log In
           </FormBtn>
         </form>
-        <FormBtn onClick={() => onFormSwitch("register")}>
+        <FormBtn onClick={() => changePage()}>
           <h3>Don't have an account? Sign Up!</h3>
         </FormBtn>
       </>

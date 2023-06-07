@@ -3,7 +3,7 @@ import axios from 'axios'
 export async function register(userRegisterData){
     await axios
       .post(
-        `https://first-node-js-app-r.herokuapp.com/api/users/register`,
+        `https://todo-redev.herokuapp.com/api/users/register`,
         userRegisterData,
         {
           headers: {
@@ -11,8 +11,8 @@ export async function register(userRegisterData){
           },
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res)
       })
       .catch((e) => {
         console.log(e);
@@ -21,15 +21,11 @@ export async function register(userRegisterData){
 
 export async function login(userLoginData) {
   await axios
-    .post(
-      `https://first-node-js-app-r.herokuapp.com/api/auth/login`,
-      userLoginData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    .post(`https://todo-redev.herokuapp.com/api/auth/login`, userLoginData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
     .then((token) => {
       console.log(token);
     })
@@ -40,7 +36,7 @@ export async function login(userLoginData) {
 
 export async function createTodos(token, todo) {
   await axios
-    .post(`https://first-node-js-app-r.herokuapp.com/api/todos`, todo, {
+    .post(``, todo, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -56,7 +52,7 @@ export async function createTodos(token, todo) {
 
 export async function updateTodo(newTodo, token, id) {
   await axios.patch(
-    `https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+    `${id}`,
     {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -68,7 +64,7 @@ export async function updateTodo(newTodo, token, id) {
 
 export async function deleteTodo(id, token) {
   await axios.delete(
-    `https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+    `${id}`,
     {
       headers: {
         "Content-type": "application/json; charset=UTF-8",

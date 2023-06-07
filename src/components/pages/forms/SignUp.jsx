@@ -1,15 +1,14 @@
 import { useState } from "react";
-import axios from "axios";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import FormBtn from "../../UI/buttons/FormBtn";
 import {register} from '../../API/Service'
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp({onFormSwitch}){
-    const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [gender, setGender] = useState(true);
+    const [gender, setGender] = useState('male');
     const [age, setAge] = useState("");
 
     function handleSubmit(e) {
@@ -19,34 +18,27 @@ export default function SignUp({onFormSwitch}){
     const validAge = (num) => {
       return (typeof num !== 'number' && age < 0)? '' : num
     }
-    
+
     const userRegisterData = {
-      name: name,
       username: username,
       email: email,
       password: password,
-      isMan: gender,
+      gender: gender,
       age: age,
     };
+
+    console.log(userRegisterData);
+
+    const navigate = useNavigate()
+
+   function changePage() {
+     onFormSwitch("login");
+      navigate("/LogIn");
+   }
     
     return (
       <>
         <form className="TodoForm TodoWrapper" onSubmit={handleSubmit}>
-          <div className="item">
-            <div className="lab">
-              <label type="text">
-                <h3>name</h3>
-              </label>
-            </div>
-            <ClassicInput
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              placeholder="Dinosaur"
-              name="text"
-            ></ClassicInput>
-          </div>
-
           <div className="item">
             <div className="lab">
               <label type="text">
@@ -87,7 +79,7 @@ export default function SignUp({onFormSwitch}){
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="secret_info123"
+              placeholder="secret_Info123"
               name="password"
             ></ClassicInput>
           </div>
@@ -102,12 +94,12 @@ export default function SignUp({onFormSwitch}){
               <div className="radio">
                 <div className="radio-item item-1">
                   <input
-                    value={gender}
-                    onChange={() => setGender(gender)}
+                    value="male"
+                    onChange={() => setGender("male")}
                     id="male"
                     type="radio"
                     name="radio"
-                    checked
+                    checked={gender === "male"}
                   ></input>
                   <label htmlFor="male">Male</label>
                 </div>
@@ -116,7 +108,9 @@ export default function SignUp({onFormSwitch}){
                     id="female"
                     type="radio"
                     name="radio"
-                    onChange={() => setGender(!gender)}
+                    value="female"
+                    checked={gender === "female"}
+                    onChange={() => setGender("female")}
                   ></input>
                   <label htmlFor="female">Female</label>
                 </div>
@@ -141,7 +135,7 @@ export default function SignUp({onFormSwitch}){
             Sign Up
           </FormBtn>
         </form>
-        <FormBtn onClick={() => onFormSwitch("login")}>
+        <FormBtn onClick={() => changePage()}>
           <h3>Already have an account? Log In!</h3>
         </FormBtn>
       </>

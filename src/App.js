@@ -1,22 +1,25 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import LogIn from './components/pages/forms/LogIn';
-import SignUp from "./components/pages/forms/SignUp";
-import TodoWrapper from "./components/pages/todo/TodoWrapper";
-import { useState } from 'react';
+import Navigation from './components/navigation/Navigation';
+// import { AuthContext } from "./context/Context";
+import { useState } from "react";
+
 
 function App() {
-  const [currName, setCurrName] = useState('login')
-
-  function toggleForm(formName){
-    setCurrName(formName)
-  }
+  const [isAuth, setIsAuth] = useState(false);
 
   return (
-    <div className="App">
-      {currName === 'login' ? 
-      <LogIn onFormSwitch={toggleForm}/> : <SignUp onFormSwitch={toggleForm}/>}      
-      <TodoWrapper/>
-    </div>
+   
+      <div className="App">
+        {/* <AuthContext.Provider
+        value={{
+          isAuth,
+          setIsAuth,
+        }}
+      > */}
+        <Navigation />
+        {/* </AuthContext.Provider> */}
+      </div>
   );
 }
 
