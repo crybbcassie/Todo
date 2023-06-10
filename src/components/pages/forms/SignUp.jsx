@@ -131,7 +131,7 @@ export default function SignUp({onFormSwitch}){
             ></ClassicInput>
           </div>
 
-          <FormBtn onClick={() => register(userRegisterData)} type="submit">
+          <FormBtn onClick={() => register(userRegisterData, changePage)} type="submit">
             Sign Up
           </FormBtn>
         </form>

@@ -5,11 +5,11 @@ import SignUp from '../pages/forms/SignUp'
 import { useContext, useState } from "react";
 
 export default function Navigation() {
-  // const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
+  const [token, setToken] = useState(localStorage.getItem("token"))
 
-  //  const updateToken = (newToken) => {
-  //    setToken(newToken);
-  //  };
+   const updateToken = (newToken) => {
+     setToken(newToken);
+   };
 
   const [currName, setCurrName] = useState("login");
 
@@ -17,12 +17,7 @@ export default function Navigation() {
     setCurrName(formName);
   }
 
-  console.log(currName)
-
-  let a = true
-  let b = false
-
-  return b ? (
+  return token ? (
     <BrowserRouter>
       <Routes>
         <Route path="/Todo" element={<TodoWrapper />} exact={true} />
@@ -34,7 +29,9 @@ export default function Navigation() {
         {currName === "login" ? (
           <Route
             path="/LogIn"
-            element={<LogIn onFormSwitch={toggleForm} />}
+            element={
+              <LogIn onFormSwitch={toggleForm} updateToken={updateToken} />
+            }
             exact={true}
           />
         ) : (

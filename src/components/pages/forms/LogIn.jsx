@@ -4,7 +4,7 @@ import FormBtn from "../../UI/buttons/FormBtn";
 import { login } from "../../API/Service";
 import { useNavigate } from "react-router-dom";
 
-export default function LogIn({onFormSwitch}){
+export default function LogIn({onFormSwitch, updateToken}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
 
@@ -20,6 +20,10 @@ export default function LogIn({onFormSwitch}){
     }
 
     const navigate = useNavigate()
+
+    function nav(){
+      navigate('/Todo')
+    }
 
     function changePage(){
       onFormSwitch('register')
@@ -53,7 +57,7 @@ export default function LogIn({onFormSwitch}){
             name="password"
           ></ClassicInput>
 
-          <FormBtn onClick={() => login(userLoginData)} type="submit">
+          <FormBtn onClick={() => login(userLoginData, nav, updateToken)} type="submit">
             Log In
           </FormBtn>
         </form>

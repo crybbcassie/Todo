@@ -8,15 +8,6 @@ uuidv4();
 export default function TodoWrapper(){
     const [todos, setTodos] = useState([])
 
-//todos = {
-//completed: false
-// id:"8f6529f0-4d57-4321-866f-a73a969a6003"
-// isEditing: false
-// task: "fjfkhoeifeiof"
-//}
-
-//todo = YOUR VALUE
-
     function addTodo(todo){
         setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
     }
