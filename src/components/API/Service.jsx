@@ -16,7 +16,7 @@ export async function register(userRegisterData, f){
         f()
       })
       .catch((e) => {
-        alert(e.response.errors.msg)
+        alert(e.response.statusText)
       });
 }
 

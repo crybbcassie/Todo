@@ -3,6 +3,8 @@ import Todo from "./Todo";
 import EditTodoForm from "./EditTodoForm";
 import { useState } from "react";
 import {v4 as uuidv4} from 'uuid'
+import FormBtn from "../../UI/buttons/FormBtn";
+import { useNavigate } from "react-router-dom";
 uuidv4();
 
 export default function TodoWrapper(){
@@ -28,7 +30,16 @@ export default function TodoWrapper(){
       setTodos(todos.map(todo => todo.id === id? {...todo, task, isEditing: !todo.isEditing}: todo))
     }
 
+    const navigate = useNavigate()
+
+    function logOut(){
+      localStorage.removeItem("token");
+      navigate('/LogIn')
+      window.location.reload();
+    }
+
     return (
+      <>
       <div className="TodoWrapper">
         <h1>Get things done!</h1>
         <TodoForm addTodo={addTodo} />
@@ -46,5 +57,8 @@ export default function TodoWrapper(){
           )
         )}
       </div>
+      
+      <FormBtn style={{border: '1px solid white'}} onClick={() => logOut()}>Log out</FormBtn>
+      </>
     );
 }

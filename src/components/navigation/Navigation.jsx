@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 
 export default function Navigation() {
   const [token, setToken] = useState(localStorage.getItem("token"))
+  console.log(token)
 
    const updateToken = (newToken) => {
      setToken(newToken);
