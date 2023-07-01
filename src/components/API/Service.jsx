@@ -54,7 +54,6 @@ export async function createTodos(title, token, addTodo) {
     )
     .then((res) => {
       addTodo(res.data.title);
-      console.log(res)
     })
     .catch((e) => {
       console.log(e);
@@ -94,5 +93,7 @@ export async function deleteTodo(id, token) {
       console.log(e);
     });
 }
+
+
 
 //https://todo-redev.herokuapp.com/api-docs/
