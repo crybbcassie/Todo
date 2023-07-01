@@ -61,9 +61,11 @@ export async function createTodos(title, token, addTodo) {
     });
 };
 
-export async function updateTodo(newTodo, token, id) {
+export async function updateTodo(newTodo, token) {
   await axios
-    .patch(`https://todo-redev.herokuapp.com/api/todos/${id}`, newTodo, {
+    .patch(`https://todo-redev.herokuapp.com/api/todos/${newTodo}`,{
+      id: newTodo,
+    } , {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
         Authorization: `Bearer ${token}`,

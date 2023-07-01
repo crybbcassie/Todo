@@ -1,10 +1,11 @@
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import EditTodoForm from "./EditTodoForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {v4 as uuidv4} from 'uuid'
 import FormBtn from "../../UI/buttons/FormBtn";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 uuidv4();
 
 export default function TodoWrapper(){
@@ -37,6 +38,28 @@ export default function TodoWrapper(){
       navigate('/LogIn')
       window.location.reload();
     }
+
+       useEffect(() => {
+         async function getAllTodos() {
+           const token = localStorage.getItem("token");
+           await axios
+             .get(`https://todo-redev.herokuapp.com/api/todos`, {
+               headers: {
+                 "Content-Type": "application/json",
+                 Authorization: `Bearer ${token}`,
+               },
+             })
+             .then((res) => {
+               setTodos(res);
+             })
+             .catch((e) => {
+               console.log(e);
+             });
+         }
+       }, []);
+
+         console.log(todos)
+      
 
     return (
       <>

@@ -3,6 +3,7 @@ import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import { updateTodo, deleteTodo } from '../../API/Service';
 
 export default function Todo({task, toggleComplete}) {
+  console.log(task)
   const token = localStorage.getItem('token')
   return (
     <div className="Todo">
