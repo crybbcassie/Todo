@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import TodoBtn from "../../UI/buttons/TodoBtn";
+import { updateTodo } from "../../API/Service";
 
 export default function EditTodoForm({ editTodo, task }) {
   const [value, setValue] = useState(task.task);

@@ -1,28 +1,31 @@
 import {useState} from 'react'
 import ClassicInput from '../../UI/inputs/ClassicInput'
 import TodoBtn from '../../UI/buttons/TodoBtn'
+import { createTodos } from '../../API/Service'
 
 export default function TodoForm({addTodo}) {
-    const [value, setValue] = useState('')
+    const [title, setTitle] = useState('')
+    const token = localStorage.getItem("token");
 
     function handleSubmit(e){
         e.preventDefault()
-        addTodo(value)
-        setValue('')
+        createTodos(title, token, addTodo)
+        setTitle('')
     }
+
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
       <ClassicInput
         type="text"
-        value={value}
+        value={title}
         placeholder="What is the task today?"
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
       ></ClassicInput>
 
       <TodoBtn type="submit">
         Add task
-      </TodoBtn>
+      </TodoBtn>  
     </form>
   );
 }

@@ -34,14 +34,38 @@ export async function login(userLoginData, navigate, updateToken) {
     })
     .catch((e) => {
       alert(e.response.data.message);
-    });
+    })
 }
 
-export async function createTodos(token, todo) {
+export async function createTodos(title, token, addTodo) {
+  console.log(token);
   await axios
-    .post(``, todo, {
+    .post(
+      `https://todo-redev.herokuapp.com/api/todos`,
+      {
+        title: title,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      addTodo(res.data.title);
+      console.log(res)
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export async function updateTodo(newTodo, token, id) {
+  await axios
+    .patch(`https://todo-redev.herokuapp.com/api/todos/${id}`, newTodo, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
         Authorization: `Bearer ${token}`,
       },
     })
@@ -53,26 +77,20 @@ export async function createTodos(token, todo) {
     });
 }
 
-export async function updateTodo(newTodo, token, id) {
-  await axios.patch(
-    `${id}`,
-    {
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  )
-}
-
 export async function deleteTodo(id, token) {
-  await axios.delete(
-    `${id}`,
-    {
+  await axios
+    .delete(`https://todo-redev.herokuapp.com/api/todos/${id}`, {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         Authorization: `Bearer ${token}`,
       },
-    }
-  )
+    })
+    .then((e) => {
+      console.log(e);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }
+
+//https://todo-redev.herokuapp.com/api-docs/

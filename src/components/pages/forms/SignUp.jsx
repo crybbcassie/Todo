@@ -27,8 +27,6 @@ export default function SignUp({onFormSwitch}){
       age: age,
     };
 
-    console.log(userRegisterData);
-
     const navigate = useNavigate()
 
    function changePage() {

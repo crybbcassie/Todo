@@ -13,8 +13,6 @@ export default function LogIn({onFormSwitch, updateToken}){
       password: password
     }
 
-    console.log(userLoginData)
-
     function handleSubmit(e){
         e.preventDefault()
     }
