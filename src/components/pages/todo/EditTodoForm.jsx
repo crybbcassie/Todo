@@ -2,13 +2,13 @@ import { useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import TodoBtn from "../../UI/buttons/TodoBtn";
 
-export default function EditTodoForm({ updateTodo, task}) {
-  const [value, setValue] = useState(task.task);
+export default function EditTodoForm({ updateTodo, todo}) {
+  const [value, setValue] = useState(todo.title);
     const token = localStorage.getItem("token");
 
   function handleSubmit(e) {
     e.preventDefault();
-    updateTodo(token, task.id, value);
+    updateTodo(token, todo.id, value);
     setValue("");
   }
 

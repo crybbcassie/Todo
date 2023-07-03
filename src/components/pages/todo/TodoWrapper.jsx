@@ -103,7 +103,7 @@ export default function TodoWrapper(){
           <TodoForm todos={todos} setTodos={setTodos} />
           {todos.map((todo) =>
             todo.isEditing ? (
-              <EditTodoForm updateTodo={updateTodo} task={todo} key={todo.id} />
+              <EditTodoForm updateTodo={updateTodo} todo={todo} key={todo.id} />
             ) : (
               <Todo
                 todo={todo}
@@ -117,7 +117,7 @@ export default function TodoWrapper(){
           )}
         </div>
 
-        <FormBtn style={{ border: "1px solid white" }} onClick={() => logOut()}>
+        <FormBtn style={{ textDecoration: 'underline' }} onClick={() => logOut()}>
           Log out
         </FormBtn>
       </>
