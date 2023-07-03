@@ -134,7 +134,7 @@ export default function SignUp({onFormSwitch}){
           </FormBtn>
         </form>
         <FormBtn onClick={() => changePage()}>
-          <h3>Already have an account? Log In!</h3>
+          <h3>Already have an account? <span>Log In!</span></h3>
         </FormBtn>
       </>
     );

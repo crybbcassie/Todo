@@ -11,20 +11,11 @@ uuidv4();
 export default function TodoWrapper(){
     const [todos, setTodos] = useState([])
     const token = localStorage.getItem("token");
-    console.log(todos)
-
-    // function addTodo(todo){
-    //     setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
-    // }
-
-    // function toggleComplete(id){
-    //     setTodos(todos.map(todo => todo.id === id? {...todo, isCcompleted: !todo.isCompleted} : todo))
-    // }
 
          async function toggleComplete(token, id) {
            await axios
              .patch(
-               `https://todo-redev.herokuapp.com/api/todos/${id}`,
+               `https://todo-redev.herokuapp.com/api/todos/${id}/isCompleted`,
                {
                  id: id,
                },
@@ -40,7 +31,7 @@ export default function TodoWrapper(){
                setTodos(
                  todos.map((todo) =>
                    todo.id === id
-                     ? { ...todo, isCcompleted: !todo.isCompleted }
+                     ? { ...todo, isCompleted: !todo.isCompleted }
                      : todo
                  )
                );
@@ -49,18 +40,6 @@ export default function TodoWrapper(){
                console.log(e);
              });
          }
-
-    // function deleteTodo(id){
-    //     setTodos(todos.filter(todo => todo.id !== id))
-    // }
-
-    // function editTodo(id){
-    //   setTodos(todos.map(todo => todo.id === id? {...todo, isEditing: !todo.isEditing} : todo))
-    // }
-
-    // function editTask(title, id){
-    //      setTodos(todos.map(todo => todo.id === id? {...todo, title, isEditing: !todo.isEditing}: todo))
-    // }
 
     const navigate = useNavigate()
 
@@ -115,7 +94,7 @@ export default function TodoWrapper(){
     
  useEffect(() => {
   getAllTodos(token);
- }, [todos]) 
+ }, []) 
 
     return (
       <>

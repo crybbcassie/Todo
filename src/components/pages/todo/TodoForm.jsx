@@ -32,7 +32,7 @@ export default function TodoForm({todos, setTodos}) {
         ...todos,
         {
           id: res.data.id,
-          task: res.data.title,
+          title: res.data.title,
           isCompleted: false,
           isEditing: false,
           user_id: res.data.user_id

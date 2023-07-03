@@ -60,7 +60,7 @@ export default function LogIn({onFormSwitch, updateToken}){
           </FormBtn>
         </form>
         <FormBtn onClick={() => changePage()}>
-          <h3>Don't have an account? Sign Up!</h3>
+          <h3>Don't have an account? <span>Sign Up!</span></h3>
         </FormBtn>
       </>
     );

@@ -25,7 +25,7 @@ export default function Todo({todo, todos, setTodos, toggleComplete, updateTodo}
   return (
     <div className="Todo">
       <p
-        onClick={() => toggleComplete(todo.id)}
+        onClick={() => toggleComplete(token, todo.id)}
         className={`${todo.isCompleted ? `isCompleted` : ``}`}
       >
         {todo.title}
