@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import FormBtn from "../../UI/buttons/FormBtn";
-import {register} from '../../API/Service'
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignUp({onFormSwitch}){
     const [username, setUsername] = useState("");
@@ -33,6 +33,28 @@ export default function SignUp({onFormSwitch}){
      onFormSwitch("login");
       navigate("/LogIn");
    }
+
+ async function register(userRegisterData) {
+  await axios
+    .post(
+      `https://todo-redev.herokuapp.com/api/users/register`,
+      userRegisterData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      changePage();
+    })
+    .catch((e) => {
+      alert(
+        e.response.data.errors.map((er) => (er.msg))
+      );
+    });
+}
     
     return (
       <>
@@ -129,7 +151,7 @@ export default function SignUp({onFormSwitch}){
             ></ClassicInput>
           </div>
 
-          <FormBtn onClick={() => register(userRegisterData, changePage)} type="submit">
+          <FormBtn onClick={() => register(userRegisterData)} type="submit">
             Sign Up
           </FormBtn>
         </form>
