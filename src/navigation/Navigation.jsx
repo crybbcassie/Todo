@@ -1,8 +1,8 @@
-import {Route, Routes, Navigate, BrowserRouter} from 'react-router-dom'
+import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import TodoWrapper from '../components/pages/todo/TodoWrapper';
 import LogIn  from '../components/pages/forms/LogIn'
 import SignUp from '../components/pages/forms/SignUp'
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 export default function Navigation() {
   const [token, setToken] = useState(localStorage.getItem("token"))

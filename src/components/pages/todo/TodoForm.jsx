@@ -1,13 +1,13 @@
-import {useState, useEffect } from 'react'
+import {useState} from 'react'
+import axios from "axios";
 import ClassicInput from '../../UI/inputs/ClassicInput'
 import TodoBtn from '../../UI/buttons/TodoBtn'
-import axios from 'axios'
 
 export default function TodoForm({todos, setTodos}) {
     const [title, setTitle] = useState('')
     const token = localStorage.getItem("token");
 
-    async function handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
         createTodos(title, token);
         setTitle('')
