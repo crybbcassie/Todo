@@ -11,12 +11,12 @@ uuidv4();
 export default function TodoWrapper(){
     const [todos, setTodos] = useState([])
 
-    function addTodo(todo){
-        setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
-    }
+    // function addTodo(todo){
+    //     setTodos([...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}])
+    // }
 
     function toggleComplete(id){
-        setTodos(todos.map(todo => todo.id === id? {...todo, completed: !todo.completed} : todo))
+        setTodos(todos.map(todo => todo.id === id? {...todo, isCcompleted: !todo.isCompleted} : todo))
     }
 
     function deleteTodo(id){
@@ -27,8 +27,8 @@ export default function TodoWrapper(){
       setTodos(todos.map(todo => todo.id === id? {...todo, isEditing: !todo.isEditing} : todo))
     }
 
-    function editTask(task, id){
-      setTodos(todos.map(todo => todo.id === id? {...todo, task, isEditing: !todo.isEditing}: todo))
+    function editTask(title, id){
+      setTodos(todos.map(todo => todo.id === id? {...todo, title, isEditing: !todo.isEditing}: todo))
     }
 
     const navigate = useNavigate()
@@ -39,30 +39,30 @@ export default function TodoWrapper(){
       window.location.reload();
     }
 
-       useEffect(() => {
-         async function getAllTodos() {
-           const token = localStorage.getItem("token");
-           await axios
-             .get(`https://todo-redev.herokuapp.com/api/todos`, {
-               headers: {
-                 "Content-Type": "application/json",
-                 Authorization: `Bearer ${token}`,
-               },
-             })
-             .then((res) => {
-               setTodos(res);
-             })
-             .catch((e) => {
-               console.log(e);
-             });
-         }
-       }, []);      
+    async function getAllTodos() {
+      const token = localStorage.getItem("token");
+
+      let result = await axios.get(
+        `https://todo-redev.herokuapp.com/api/todos`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setTodos(result.data);
+    }
+    
+ useEffect(() => {
+  getAllTodos();
+ }, [todos]) 
 
     return (
       <>
       <div className="TodoWrapper">
         <h1>Get things done!</h1>
-        <TodoForm addTodo={addTodo} />
+        <TodoForm todos={todos} setTodos={setTodos}/>
         {todos.map((todo) =>
           todo.isEditing ? (
             <EditTodoForm editTodo={editTask} task={todo} key={todo.id}/>

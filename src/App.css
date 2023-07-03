@@ -56,7 +56,7 @@ h3 {
   margin-left: 0.75rem;
 }
 
-.completed {
+.isCompleted {
   color: #c5aeff;
   text-decoration: line-through;
 }

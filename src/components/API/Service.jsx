@@ -37,30 +37,7 @@ export async function login(userLoginData, navigate, updateToken) {
     })
 }
 
-export async function createTodos(title, token, addTodo) {
-  console.log(token);
-  await axios
-    .post(
-      `https://todo-redev.herokuapp.com/api/todos`,
-      {
-        title: title,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-    .then((res) => {
-      addTodo(res.data.title);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
-
-export async function updateTodo(title, id, editTodo) {
+export async function updateTodo(title, id) {
   const token = localStorage.getItem("token");
   await axios
     .patch(`https://todo-redev.herokuapp.com/api/todos/${id}`,{
@@ -72,7 +49,6 @@ export async function updateTodo(title, id, editTodo) {
       },
     })
     .then((res) => {
-      editTodo(id);
       console.log(res);
     })
     .catch((e) => {
