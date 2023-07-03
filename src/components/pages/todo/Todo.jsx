@@ -1,6 +1,5 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
-// import { updateTodo, deleteTodo } from '../../API/Service';
 
 export default function Todo({task, toggleComplete, editTodo, deleteTodo}) {
   const token = localStorage.getItem('token')

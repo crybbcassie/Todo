@@ -60,18 +60,20 @@ export async function createTodos(title, token, addTodo) {
     });
 };
 
-export async function updateTodo(newTodo, token) {
+export async function updateTodo(title, id, editTodo) {
+  const token = localStorage.getItem("token");
   await axios
-    .patch(`https://todo-redev.herokuapp.com/api/todos/${newTodo}`,{
-      id: newTodo,
+    .patch(`https://todo-redev.herokuapp.com/api/todos/${id}`,{
+      title: title
     } , {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
         Authorization: `Bearer ${token}`,
       },
     })
-    .then((e) => {
-      console.log(e);
+    .then((res) => {
+      editTodo(id);
+      console.log(res);
     })
     .catch((e) => {
       console.log(e);

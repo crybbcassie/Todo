@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClassicInput from "../../UI/inputs/ClassicInput";
 import TodoBtn from "../../UI/buttons/TodoBtn";
-import { updateTodo } from "./TodoWrapper";
+import { updateTodo } from '../../API/Service';
 
-export default function EditTodoForm({ editTodo, task }) {
+export default function EditTodoForm({ editTodo, task}) {
   const [value, setValue] = useState(task.task);
 
   function handleSubmit(e) {
     e.preventDefault();
-    editTodo(value, task.id);
+    editTodo(value, task.id)
     setValue("");
   }
 

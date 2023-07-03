@@ -1,7 +1,7 @@
 import {Route, Routes, Navigate, BrowserRouter} from 'react-router-dom'
-import TodoWrapper from '../pages/todo/TodoWrapper'
-import LogIn  from '../pages/forms/LogIn'
-import SignUp from '../pages/forms/SignUp'
+import TodoWrapper from '../components/pages/todo/TodoWrapper';
+import LogIn  from '../components/pages/forms/LogIn'
+import SignUp from '../components/pages/forms/SignUp'
 import { useContext, useState } from "react";
 
 export default function Navigation() {

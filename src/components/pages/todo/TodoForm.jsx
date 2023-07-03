@@ -7,12 +7,11 @@ export default function TodoForm({addTodo}) {
     const [title, setTitle] = useState('')
     const token = localStorage.getItem("token");
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         createTodos(title, token, addTodo)
         setTitle('')
-    }
-
+    } 
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>

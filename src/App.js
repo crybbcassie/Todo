@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Navigation from './components/navigation/Navigation';
+import Navigation from './navigation/Navigation';
 // import { AuthContext } from "./context/Context";
 import { useState } from "react";
 
