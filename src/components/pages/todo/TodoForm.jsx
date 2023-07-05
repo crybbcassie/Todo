@@ -2,8 +2,14 @@ import {useState} from 'react'
 import axios from "axios";
 import ClassicInput from '../../UI/inputs/ClassicInput'
 import TodoBtn from '../../UI/buttons/TodoBtn'
+  // import { useSelector, useDispatch } from "react-redux";
+  // import { addTodos } from "../../../store/todosSlice";
 
 export default function TodoForm({todos, setTodos}) {
+
+
+  // const todos = useSelector((state) => state.text.value);
+  // const dispatch = useDispatch();
     const [title, setTitle] = useState('')
     const token = localStorage.getItem("token");
 
