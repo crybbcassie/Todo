@@ -19,7 +19,7 @@ export default function TodoForm() {
         type="text"
         value={title}
         placeholder="What is the task today?"
-        onChange={(event) => setTitle(event.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       ></ClassicInput>
 
       <TodoBtn type="submit">

@@ -15,7 +15,9 @@ export const fetchTodos = createAsyncThunk(
           },
         }
       );
-      return result.data
+      return (result.data.map(obj => {
+    return { ...obj, isEditing: false };
+  }))
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -153,7 +155,7 @@ const todoSlice = createSlice({
       toggledTodo.isCompleted = !toggledTodo.isCompleted;
     },
     updateTodo(state, action) {
-       const { id, title } = action.payload;
+      const { id, title } = action.payload;
       const todo = state.find(todo => todo.id === id);
       if (todo) todo.title = title;
     }
