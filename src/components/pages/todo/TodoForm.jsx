@@ -1,48 +1,17 @@
 import {useState} from 'react'
-import axios from "axios";
-import ClassicInput from '../../UI/inputs/ClassicInput'
-import TodoBtn from '../../UI/buttons/TodoBtn'
+import {useDispatch} from 'react-redux'
+import {ClassicInput, TodoBtn } from '../../UI/index'
+import { addNewTodo } from '../../../store/todoSlice'
 
-export default function TodoForm({todos, setTodos}) {
+export default function TodoForm() {
     const [title, setTitle] = useState('')
-    const token = localStorage.getItem("token");
+    const dispatch = useDispatch();
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
-        createTodos(title, token);
+        dispatch(addNewTodo(title));
         setTitle('')
     } 
-
-    async function createTodos(title, token) {
-  await axios
-    .post(
-      `https://todo-redev.herokuapp.com/api/todos`,
-      {
-        title: title,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-    .then((res) => {
-      setTodos([
-        ...todos,
-        {
-          id: res.data.id,
-          title: res.data.title,
-          isCompleted: false,
-          isEditing: false,
-          user_id: res.data.user_id
-        },
-      ]);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};  
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>

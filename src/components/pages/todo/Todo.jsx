@@ -1,43 +1,27 @@
-import axios from 'axios'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { toggleComplete, editTodo, deleteTodo } from "../../../store/todoSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function Todo({todo, todos, setTodos, toggleComplete, updateTodo}) {
-  const token = localStorage.getItem('token')
-
- async function deleteTodo(token, id) {
-    await axios
-      .delete(`https://todo-redev.herokuapp.com/api/todos/${id}`, {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((e) => {
-        console.log(e);
-        setTodos(todos.filter((todo) => todo.id !== id));
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
-
+export default function Todo({ id, title, isCompleted }) {
+  const dispatch = useDispatch();
   return (
     <div className="Todo">
       <p
-        onClick={() => toggleComplete(token, todo.id)}
-        className={`${todo.isCompleted ? `isCompleted` : ``}`}
+        onClick={() => dispatch(toggleComplete( id ))}
+        className={`${isCompleted ? `isCompleted` : ``
+        }`}
       >
-        {todo.title}
+        {title}
       </p>
       <div>
         <FontAwesomeIcon
           icon={faPenToSquare}
-          onClick={() => updateTodo(token, todo.id, todo.title)}
+          onClick={() => dispatch(editTodo(id))}
         />
         <FontAwesomeIcon
           icon={faTrash}
-          onClick={() => deleteTodo(token, todo.id)}
+          onClick={() => dispatch(deleteTodo(id))}
         />
       </div>
     </div>
