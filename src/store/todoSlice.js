@@ -114,6 +114,7 @@ export const editTodo = createAsyncThunk(
         },
       }
     );
+      dispatch(updateTodo({ id, title }));
       dispatch(toggleEditing( id ));
     } catch (e) {
       return rejectWithValue(e.message);
@@ -148,6 +149,14 @@ const todoSlice = createSlice({
           : todo;
       });
     },
+    updateTodo: (state, action) => {
+      console.log(action.payload)
+      state.todos = state.todos.map((todo) => {
+        return todo.id === action.payload.id
+          ? { ...todo, title: action.payload.title, isEditing: !todo.isEditing }
+          : todo;
+      });
+    }
 },
   extraReducers: {
     [fetchTodos.pending]: (state) => {
@@ -177,6 +186,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, removeTodo, toggleTodoComplete, toggleEditing } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoComplete, toggleEditing, updateTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
