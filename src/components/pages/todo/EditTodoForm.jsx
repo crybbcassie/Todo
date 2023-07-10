@@ -4,7 +4,7 @@ import { editTodo } from "../../../store/todoSlice";
 import {useDispatch} from 'react-redux'
 
 export default function EditTodoForm({title, id}) {
-  const [value, setValue] = useState({title});
+  const [value, setValue] = useState(title);
    const dispatch = useDispatch();
 
   function handleSubmit(e) {

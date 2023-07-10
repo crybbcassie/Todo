@@ -113,7 +113,7 @@ export const editTodo = createAsyncThunk(
   async function (id, title, { rejectWithValue, dispatch }) {
     try {
     const token = localStorage.getItem("token");
-       let result = await axios.patch(
+    await axios.patch(
          `https://todo-redev.herokuapp.com/api/todos/${id}`,
          {
            title: title,
@@ -125,12 +125,11 @@ export const editTodo = createAsyncThunk(
            },
          }
        );
-      if (!result.ok) {
-        throw new Error("cann/t edit");
-      }
-      console.log('edit')
+      // if (!result.ok) {
+      //   throw new Error("cann/t edit");
+      // }
 
-      dispatch(toggleEditing({ id, title }));
+      dispatch(toggleEditing({ id }));
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -146,8 +145,7 @@ const todoSlice = createSlice({
   },
   reducers: {
     addTodo(state, action) {
-      console.log(action.payload)
-      state.todos.push(action.payload);
+      state.todos.push(action.payload.data);
     },
     removeTodo(state, action) {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
@@ -159,9 +157,10 @@ const todoSlice = createSlice({
       toggledTodo.isCompleted = !toggledTodo.isCompleted;
     },
     toggleEditing: (state, action) => {
-      const { id } = action.payload;
-      return state.todos.map((todo) => {
-        return todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo;
+      state.todos = state.todos.map((todo) => {
+        return todo.id === action.payload
+          ? { ...todo, isEditing: !todo.isEditing }
+          : todo;
       });
     },
   },
