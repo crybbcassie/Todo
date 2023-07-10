@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function TodoWrapper(){
   const todos = useSelector((state) => state.todos.todos);
-  console.log(todos)
   const { status, error } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 

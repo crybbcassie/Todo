@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { ClassicInput, TodoBtn } from "../../UI/index";
-import { updateTodo } from "../../../store/todoSlice";
+import { editTodo } from "../../../store/todoSlice";
+import {useDispatch} from 'react-redux'
 
 export default function EditTodoForm({title, id}) {
   const [value, setValue] = useState({title});
+   const dispatch = useDispatch();
 
   function handleSubmit(e) {
     e.preventDefault();
-    updateTodo(id, value);
+    dispatch(editTodo(id, value));
     setValue("");
   }
 

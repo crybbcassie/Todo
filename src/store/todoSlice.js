@@ -41,10 +41,12 @@ export const addNewTodo = createAsyncThunk(
             },
           }
         );
+
+        console.log(result)
         
-      if (!result.ok) {
-        throw new Error("cann/t toggle");
-      }
+      // if (!result.ok) {
+      //   return 'err'
+      // }
 
       dispatch(addTodo(result));
     } catch (e) {
@@ -70,9 +72,9 @@ export const toggleComplete = createAsyncThunk(
           },
         }
       );
-      if (!result.ok) {
-        throw new Error("cann/t toggle");
-      }
+      // if (!result.ok) {
+      //   throw new Error("cann/t toggle");
+      // }
 
       dispatch(toggleTodoComplete({ id }));
     } catch (e) {
@@ -95,9 +97,9 @@ export const deleteTodo = createAsyncThunk(
             },
           }
         );
-      if (!result.ok) {
-        throw new Error("cann/t delete");
-      }
+      // if (!result.ok) {
+      //   throw new Error("cann/t delete");
+      // }
 
       dispatch(removeTodo({ id }));
     } catch (e) {
@@ -108,7 +110,7 @@ export const deleteTodo = createAsyncThunk(
 
 export const editTodo = createAsyncThunk(
   "todos/editTodo",
-  async function (id, title, { rejectWithValue, dispatch, getState }) {
+  async function (id, title, { rejectWithValue, dispatch }) {
     try {
     const token = localStorage.getItem("token");
        let result = await axios.patch(
@@ -126,8 +128,9 @@ export const editTodo = createAsyncThunk(
       if (!result.ok) {
         throw new Error("cann/t edit");
       }
+      console.log('edit')
 
-      dispatch(updateTodo({ id, title }));
+      dispatch(toggleEditing({ id, title }));
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -143,6 +146,7 @@ const todoSlice = createSlice({
   },
   reducers: {
     addTodo(state, action) {
+      console.log(action.payload)
       state.todos.push(action.payload);
     },
     removeTodo(state, action) {
@@ -154,11 +158,12 @@ const todoSlice = createSlice({
       );
       toggledTodo.isCompleted = !toggledTodo.isCompleted;
     },
-    updateTodo(state, action) {
-      const { id, title } = action.payload;
-      const todo = state.find(todo => todo.id === id);
-      if (todo) todo.title = title;
-    }
+    toggleEditing: (state, action) => {
+      const { id } = action.payload;
+      return state.todos.map((todo) => {
+        return todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo;
+      });
+    },
   },
   extraReducers: {
     [fetchTodos.pending]: (state) => {
@@ -173,21 +178,21 @@ const todoSlice = createSlice({
       state.status = "rejected";
       state.error = action.payload;
     },
-    // [deleteTodo.rejected]: (state, action) => {
-    //   state.status = "rejected";
-    //   state.error = action.payload;
-    // },
-    // [toggleComplete.rejected]: (state, action) => {
-    //   state.status = "rejected";
-    //   state.error = action.payload;
-    // },
-    // [addNewTodo.rejected]: (state, action) => {
-    //   state.status = "rejected";
-    //   state.error = action.payload;
-    // },
+    [deleteTodo.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [toggleComplete.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [addNewTodo.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
   },
 });
 
-export const { addTodo, removeTodo, toggleTodoComplete, updateTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoComplete, toggleEditing } = todoSlice.actions;
 
 export default todoSlice.reducer;
