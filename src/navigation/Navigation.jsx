@@ -20,7 +20,7 @@ export default function Navigation() {
   return token ? (
     <BrowserRouter>
       <Routes>
-        <Route path="/Todo" element={<TodoWrapper />} exact={true} />
+        <Route path="/Todos" element={<TodoWrapper />} exact={true} />
       </Routes>
     </BrowserRouter>
   ) : (
@@ -28,7 +28,7 @@ export default function Navigation() {
       <Routes>
         {currName === "login" ? (
           <Route
-            path="/LogIn"
+            path="/Todo"
             element={
               <LogIn onFormSwitch={toggleForm} updateToken={updateToken} />
             }

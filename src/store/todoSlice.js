@@ -153,7 +153,7 @@ const todoSlice = createSlice({
       console.log(action.payload)
       state.todos = state.todos.map((todo) => {
         return todo.id === action.payload.id
-          ? { ...todo, title: action.payload.title, isEditing: !todo.isEditing }
+          ? { ...todo, title: action.payload.title }
           : todo;
       });
     }

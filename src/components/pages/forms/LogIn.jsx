@@ -19,7 +19,7 @@ export default function LogIn({onFormSwitch, updateToken}){
 
     const navigate = useNavigate()
     function nav(){
-      navigate('/Todo')
+      navigate('/Todos')
     }
 
     function changePage(){

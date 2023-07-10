@@ -14,7 +14,7 @@ export default function TodoWrapper(){
 
     function logOut(){
       localStorage.removeItem("token");
-      navigate('/LogIn')
+      navigate('/Todo')
       window.location.reload();
     }
     

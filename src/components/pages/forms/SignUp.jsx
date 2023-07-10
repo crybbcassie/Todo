@@ -31,7 +31,7 @@ export default function SignUp({onFormSwitch}){
 
    function changePage() {
      onFormSwitch("login");
-      navigate("/LogIn");
+      navigate("/Todo");
    }
 
  async function register(userRegisterData) {
