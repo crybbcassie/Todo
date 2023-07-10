@@ -41,13 +41,6 @@ export const addNewTodo = createAsyncThunk(
             },
           }
         );
-
-        console.log(result)
-        
-      // if (!result.ok) {
-      //   return 'err'
-      // }
-
       dispatch(addTodo(result));
     } catch (e) {
       return rejectWithValue(e.message);
@@ -72,10 +65,6 @@ export const toggleComplete = createAsyncThunk(
           },
         }
       );
-      // if (!result.ok) {
-      //   throw new Error("cann/t toggle");
-      // }
-
       dispatch(toggleTodoComplete({ id }));
     } catch (e) {
       return rejectWithValue(e.message);
@@ -110,26 +99,22 @@ export const deleteTodo = createAsyncThunk(
 
 export const editTodo = createAsyncThunk(
   "todos/editTodo",
-  async function (id, title, { rejectWithValue, dispatch }) {
+  async function ({id, title}, { rejectWithValue, dispatch }) {
     try {
     const token = localStorage.getItem("token");
     await axios.patch(
-         `https://todo-redev.herokuapp.com/api/todos/${id}`,
-         {
-           title: title,
-         },
-         {
-           headers: {
-             "Content-Type": "application/json; charset=utf-8",
-             Authorization: `Bearer ${token}`,
-           },
-         }
-       );
-      // if (!result.ok) {
-      //   throw new Error("cann/t edit");
-      // }
-
-      dispatch(toggleEditing({ id }));
+      `https://todo-redev.herokuapp.com/api/todos/${id}`,
+      {
+        title: title,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+      dispatch(toggleEditing( id ));
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -163,7 +148,7 @@ const todoSlice = createSlice({
           : todo;
       });
     },
-  },
+},
   extraReducers: {
     [fetchTodos.pending]: (state) => {
       state.status = "loading";
