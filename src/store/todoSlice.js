@@ -150,7 +150,6 @@ const todoSlice = createSlice({
       });
     },
     updateTodo: (state, action) => {
-      console.log(action.payload)
       state.todos = state.todos.map((todo) => {
         return todo.id === action.payload.id
           ? { ...todo, title: action.payload.title }

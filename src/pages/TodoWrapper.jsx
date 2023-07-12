@@ -1,13 +1,13 @@
-import {TodoForm, Todo, EditTodoForm} from "./index";
-import { FormBtn } from '../../UI/index'
+import {TodoForm, Todo, EditTodoForm} from "../components/todo/index";
+import { FormBtn } from '../components/UI/index'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos } from "../../../store/todoSlice";
+import { fetchTodos } from "../store/todoSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function TodoWrapper(){
   const todos = useSelector((state) => state.todos.todos);
-  const { status, error } = useSelector((state) => state.todos);
+  const { status, error } = todos;
   const dispatch = useDispatch();
 
     const navigate = useNavigate()

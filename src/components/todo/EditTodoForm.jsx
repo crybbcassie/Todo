@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ClassicInput, TodoBtn } from "../../UI/index";
-import { editTodo } from "../../../store/todoSlice";
+import { ClassicInput, TodoBtn } from "../UI/index";
+import { editTodo } from "../../store/todoSlice";
 import { useDispatch } from 'react-redux'
 
 export default function EditTodoForm({title, id}) {

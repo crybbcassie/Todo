@@ -3,7 +3,7 @@ import {
   toggleComplete,
   toggleEditing,
   deleteTodo,
-} from "../../../store/todoSlice";
+} from "../../store/todoSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 

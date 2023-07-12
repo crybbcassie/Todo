@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {ClassicInput, TodoBtn } from '../../UI/index'
-import { addNewTodo } from '../../../store/todoSlice'
+import {ClassicInput, TodoBtn } from '../UI/index'
+import { addNewTodo } from '../../store/todoSlice'
 
 export default function TodoForm() {
     const [title, setTitle] = useState('')

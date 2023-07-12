@@ -1,12 +1,13 @@
 import { useState } from "react";
-import ClassicInput from "../../UI/inputs/ClassicInput";
-import FormBtn from "../../UI/buttons/FormBtn";
+import {ClassicInput, FormBtn} from '../components/UI/index';
+import {login} from '../utils/Verification'
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 export default function LogIn({onFormSwitch, updateToken}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const userLoginData ={
       email: email,
@@ -17,35 +18,9 @@ export default function LogIn({onFormSwitch, updateToken}){
         e.preventDefault()
     }
 
-    const navigate = useNavigate()
-    function nav(){
-      navigate('/Todos')
-    }
-
     function changePage(){
       onFormSwitch('register')
       navigate('/SignUp')
-    }
-
-    async function login(userLoginData, navigate, updateToken) {
-      await axios
-        .post(
-          `https://todo-redev.herokuapp.com/api/auth/login`,
-          userLoginData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          localStorage.setItem("token", res.data.token);
-          updateToken(res.data.token);
-          navigate();
-        })
-        .catch((e) => {
-           alert(e.response.data.message);
-        });
     }
 
     return (
@@ -75,7 +50,7 @@ export default function LogIn({onFormSwitch, updateToken}){
             name="password"
           ></ClassicInput>
 
-          <FormBtn onClick={() => login(userLoginData, nav, updateToken)} type="submit">
+          <FormBtn onClick={() => login(userLoginData, navigate, updateToken)} type="submit">
             Log In
           </FormBtn>
         </form>
